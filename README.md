@@ -16,8 +16,8 @@
 ![root = ct.CTk()](assets/images/github/JPG/ApexRAT.jpg)
 
 ## ⚡️ Usage
-1. Install all requirements with install(.bat) file.
-2. Configure connect.apex and configure ApexRAT-Client.py
+1. Install all requirements with `install.bat` file.
+2. Configure `connect.apex` and configure `ApexRAT-Client.py`
 3. Launch the server with `python ApexRAT-Server.py` or directly via .py file.
 
 ## Features
