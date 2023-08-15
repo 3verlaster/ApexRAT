@@ -11,7 +11,7 @@ Apex RAT v1.0 BETA (hotfix) - only .exe:
 [/] Console bug fixed (server-side)
 
 
-Apex RAT v1.1 BETA:
+Apex RAT v1.1:
 
 [+] Builder(v1.0) - Features: Obfuscation, Auto StartUp, Self copy to %temp% as "svchost.exe". - REQUIRE INSTALLED PYTHON
 
