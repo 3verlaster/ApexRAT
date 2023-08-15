@@ -13,8 +13,6 @@
 <img alt="Github License" src="https://img.shields.io/badge/License-MIT-green.svg" />
 </p>
 
-![root = ct.CTk()](assets/images/github/JPG/ApexRAT.jpg)
-
 ## ⚡️ Usage
 1. Install all requirements with `install.bat` file.
 2. Configure `connect.apex` and configure `ApexRAT-Client.py`
