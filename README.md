@@ -29,3 +29,8 @@
 
 ## Screenshot
 ![root = ct.CTk()](assets/images/github/example/example1.jpg)
+
+## Changelog
+
+[CHANGELOG.md](./CHANGELOG.md)
+
