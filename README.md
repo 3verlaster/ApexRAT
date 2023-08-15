@@ -23,12 +23,16 @@
 ## Features
 1. Send "Hello, Client" for check connection. [v1.0]
 2. Receive client screenshot [v1.0]
-3. Remote Desktop Streaming [v1.0]
+3. Remote Desktop Streaming [v1.0] (v1.1 impoved)
 4. Open URL [v1.0]
 5. Summon MessageBox [v1.0]
+6. Enable/Disable taskmgr.exe [v1.1]
 
 ## Screenshot
 ![root = ct.CTk()](assets/images/github/example/example2.jpg)
+
+## Builder
+![root = ct.CTk()](assets/images/github/example/Builder1.png)
 
 ## Changelog
 
