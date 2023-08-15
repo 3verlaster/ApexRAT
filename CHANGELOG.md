@@ -13,6 +13,7 @@ Apex RAT v1.1 BETA:
 [+] Button to enable/disable taskmgr.exe (server-side)
 [+] Periodic Reconnect every 350 seconds.(can be changed) (client-side) - useful for constantly online server.
 [+] Extra tabs in context menu. [SORTED] (server-side)
+[-] Removed console. (server-side)
 [/] Optimized code. (both)
 [/] Ping data fixed. (server-side)
 [/] Screenshot save bug fixed. (server-side)
