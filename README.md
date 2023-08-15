@@ -28,7 +28,7 @@
 5. Summon MessageBox [v1.0]
 
 ## Screenshot
-![root = ct.CTk()](assets/images/github/example/example1.jpg)
+![root = ct.CTk()](assets/images/github/example/example2.jpg)
 
 ## Changelog
 
