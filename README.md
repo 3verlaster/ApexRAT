@@ -15,6 +15,10 @@
 
 ![root = ct.CTk()](assets/images/github/JPG/ApexRAT_NEW.jpg)
 
+## 🛡 Builder Warning
+`pyinstaller==5.11.0`
+`pyarmor==7.7.4`
+
 ## ⚡️ Usage
 1. Install all requirements with `install.bat` file.
 2. Configure `connect.apex` and configure `ApexRAT-Client.py`
