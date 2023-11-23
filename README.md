@@ -41,10 +41,10 @@
 6. Enable/Disable taskmgr.exe [v1.1]
 
 ## Screenshot
-![root = ct.CTk()](assets/images/github/example/example2.jpg)
+![root = ct.CTk()](assets/images/github/example/example3.jpg)
 
 ## Builder
-![root = ct.CTk()](assets/images/github/example/Builder1.png)
+![root = ct.CTk()](assets/images/github/example/Builder2.png)
 
 ## ApexRAT Changelog
 
