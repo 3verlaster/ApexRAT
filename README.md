@@ -24,6 +24,14 @@
 2. Configure `connect.apex` and configure `ApexRAT-Client.py`
 3. Launch the server with `python ApexRAT-Server.py` or directly via .py file.
 
+## ✈ Telegram Notifications (ApexRAT 1.2)
+1. Create a new telegram bot through `https://t.me/BotFather`
+2. Insert bot token to `assets/telegram/token_notify.apex`
+3. Get Your Chat ID (I've been getting through `https://t.me/chatIDrobot`)
+4. Insert your chat id to `assets/telegram/id_notify.apex`
+5. Enjoy.
+
+
 ## Features
 1. Send "Hello, Client" for check connection. [v1.0]
 2. Receive client screenshot [v1.0]
