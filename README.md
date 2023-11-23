@@ -69,7 +69,7 @@
 
 `[/] Improved .bat files. (server-side)`
 
-## Apex RAT v1.2 (not released yet):
+## Apex RAT v1.2:
 
 `[+] Telegram new client notification. (server-side)`
 
@@ -95,6 +95,6 @@
 
 ## Builder Changelog
 
-## Builder v1.1 (not releades yet):
+## Builder v1.1:
 
 `[+] Button to request administrator rights. (Run as admin)`
