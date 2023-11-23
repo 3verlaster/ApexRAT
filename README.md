@@ -81,7 +81,7 @@
 
 `[+] Added access to client CMD. (both)`
 
-`[+] Button to open CDRom. (server-side)`
+`[+] Button to open CD Rom. (server-side)`
 
 `[/] Fixed HWID retrieval. Now gets HWID instead of UUID. (client-side)`
 
