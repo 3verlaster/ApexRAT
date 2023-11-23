@@ -44,7 +44,7 @@
 ![root = ct.CTk()](assets/images/github/example/example3.jpg)
 
 ## Builder
-![root = ct.CTk()](assets/images/github/example/Builder2.png)
+![root = ct.CTk()](assets/images/github/example/Builder2.jpg)
 
 ## ApexRAT Changelog
 
