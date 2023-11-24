@@ -28,4 +28,7 @@ Apex RAT v1.2:
 [/] Optimized sending/receiving data. (both)
 [/] Fixed reconnection spam, now is 5 seconds. (client-side)
 [/] Fixed pyinstaller, pyarmor versions to install in b_install.bat (server-side)
-[*] Changed labels font.
+[*] Changed labels font. (server-side)
+[SILENT UPDATE]:
+	[+] Added new lib. to install: cpuinfo, gputil. (client-side)
+	[+] "Client Info" windows bug fixes + new features. (server-side)
