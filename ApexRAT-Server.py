@@ -181,7 +181,7 @@ def handle_client(client_socket, client_address):
                     print(e)
             elif data.startswith("Ap3x1nfo:"):
                 ## print(data) //
-                command, c_username, c_hostname, c_os_version, c_build, c_hwid, c_public_ip = data.split("::")
+                command, c_username, c_hostname, c_os_version, c_build, c_hwid, c_public_ip, c_gpu, c_cpu  = data.split("::")
                 try:
                     def info_window():
                         info_window_tk = ct.CTkToplevel(root)
@@ -191,12 +191,15 @@ def handle_client(client_socket, client_address):
                             info_window_tk.iconbitmap("assets/apex.ico")
                         except:
                             pass
-                        tk.Label(info_window_tk, text=f"OS: {c_os_version}", font='Verdana 9').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"Build: {c_build}", font='Verdana 9').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"Username: {c_username}", font='Verdana 15').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"Hostname: {c_hostname}", font='Verdana 15').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"HWID: {c_hwid}", font='Verdana 15').pack(pady=2)
-                        tk.Label(info_window_tk, text=f"Public IP: {c_public_ip}", font='Verdana 15').pack(pady=2)
+                        info_font = ct.CTkFont(family="Verdana", size=20)
+                        ct.CTkLabel(info_window_tk, text=f"OS: {c_os_version}", font=info_font).pack(pady=2)
+                        ct.CTkLabel(info_window_tk, text=f"Build: {c_build}", font=info_font).pack(pady=2)
+                        ct.CTkLabel(info_window_tk, text=f"Username: {c_username}", font=info_font).pack(pady=2)
+                        ct.CTkLabel(info_window_tk, text=f"Hostname: {c_hostname}", font=info_font).pack(pady=2)
+                        ct.CTkLabel(info_window_tk, text=f"HWID: {c_hwid}", font=info_font).pack(pady=2)
+                        ct.CTkLabel(info_window_tk, text=f"Public IP: {c_public_ip}", font=info_font).pack(pady=2)
+                        ct.CTkLabel(info_window_tk, text=f"GPU: {c_gpu}", font=info_font).pack(pady=2)
+                        ct.CTkLabel(info_window_tk, text=f"CPU: {c_cpu}", font=info_font).pack(pady=2)
 
                     info_thread = threading.Thread(target=info_window)
                     info_thread.start()
