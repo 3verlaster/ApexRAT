@@ -15,5 +15,9 @@ echo [+] library "customtkinter" installed.
 echo [*] installing library "vidstream" ...
 pip install vidstream
 echo [+] library "vidstream" installed.
-echo [\] installation completed!
+pip install cpuinfo
+echo [+] library "cpuinfo" installed.
+pip install gputil
+echo [+] library "gputil" installed.
+echo [!] installation completed!
 REM #----------------END------------------#
