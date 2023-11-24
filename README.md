@@ -50,7 +50,6 @@
 
 
 ## Apex RAT v1.1:
-(IM FUCKED UP WITH CLIENT INFO WINDOWS DESIGN, FIX SOON)
 
 `[+] Builder(v1.0) - Features: Obfuscation, Auto StartUp, Self copy to %temp% as "svchost.exe". - REQUIRE INSTALLED PYTHON FOR BUILDER WORK`
 
