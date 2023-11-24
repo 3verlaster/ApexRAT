@@ -93,6 +93,13 @@
 
 `[*] Changed labels font.`
 
+[SILENT UPDATE]:
+
+    [+] Added new lib. to install: cpuinfo, gputil. (client-side)
+    
+	  [+] "Client Info" windows bug fixes + new features. (server-side)
+
+
 ## Builder Changelog
 
 ## Builder v1.1:
