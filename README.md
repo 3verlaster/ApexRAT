@@ -13,7 +13,7 @@
 <img alt="Github License" src="https://img.shields.io/badge/License-MIT-green.svg" />
 </p>
 
-![root = ct.CTk()](assets/images/github/JPG/ApexRAT_NEWEST.jpg)
+![root = ct.CTk()](assets/images/github/JPG/ApexRAT_NEW_1.jpg)
 
 ## 🛡 Builder Warning
 `pyinstaller==5.11.0`
