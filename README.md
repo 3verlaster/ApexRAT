@@ -39,6 +39,10 @@
 4. Open URL [v1.0]
 5. Summon MessageBox [v1.0]
 6. Enable/Disable taskmgr.exe [v1.1]
+7. Telegram New Client Notification [v1.2]
+8. Access to client CMD [v1.2]
+9. Open CD Rom [v1.2]
+10. Get Client CPU, GPU, HWID, Public IP, Username, Hostname
 
 ## Screenshot
 ![root = ct.CTk()](assets/images/github/example/example3.jpg)
@@ -78,8 +82,6 @@
 `[+] Added "[Github]" button. (server-side)`
 
 `[+] Added access to client CMD. Full console with all functions (including $ cd  * through os.chdir)(both)`
-
-`[+] Added access to client CMD. (both)`
 
 `[+] Button to open CD Rom. (server-side)`
 
