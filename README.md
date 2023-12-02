@@ -42,7 +42,7 @@
 7. Telegram New Client Notification [v1.2]
 8. Access to client CMD [v1.2]
 9. Open CD Rom [v1.2]
-10. Get Client CPU, GPU, HWID, Public IP, Username, Hostname
+10. Get Client CPU, GPU, HWID, Public IP, Username, Hostname [v1.2]
 
 ## Screenshot
 ![root = ct.CTk()](assets/images/github/example/example3.jpg)
